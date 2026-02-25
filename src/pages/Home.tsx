@@ -71,6 +71,13 @@ function Home() {
     link.click()
   }
 
+  const formatRupiah = (angka: number) => {
+    return angka.toLocaleString("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    })
+  }
+
   return (
     <>
       <section className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-20 text-center">
@@ -171,9 +178,9 @@ function Home() {
                       <td className="p-2">{item.nama}</td>
                       <td className="p-2">{item.produk}</td>
                       <td className="p-2">{item.jumlah}</td>
-                      <td className="p-2">Rp {item.harga}</td>
+                      <td className="p-2">Rp {formatRupiah(item.harga)}</td>
                       <td className="p-2 font-semibold text-blue-700">
-                        Rp {item.total}
+                         {formatRupiah(item.total)}
                       </td>
                       <td className="p-2">
                         <button
@@ -191,8 +198,7 @@ function Home() {
 
             <div className="mt-6 text-right">
               <p className="text-lg font-bold text-green-700">
-                Total Semua: Rp{" "}
-                {dataPenjualan.reduce((acc, item) => acc + item.total, 0)}
+                Total Semua: {formatRupiah(dataPenjualan.reduce((acc, item) => acc + item.total, 0))}
               </p>
             </div>
           </div>
